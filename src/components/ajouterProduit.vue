@@ -19,3 +19,10 @@ import formulaire from "./formulaire.vue";
     </div>
     </div>
 </template>
+
+<!--Annimation pour fermeture et ouverture des accordion fait l'aide de Chat-GPT-->
+<style scoped>
+.accordion-collapse {
+    transition: height 0.2s ease-out, opacity 0.2s ease-out; 
+}
+</style>
