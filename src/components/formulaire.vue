@@ -8,12 +8,13 @@ const description = ref("");
 const prix = ref("");
 
 function ajouterProduit(event: Event) {
+  event.preventDefault();
   boissonsListe.push(creerNouvelleBoisson());
-  validate(event);
+  validate();
 }
 
-function validate(event: Event) {
-  //event.preventDefault();
+function validate() {
+  reinitialiserErreur();
   console.log("erreur");
   /*
   let erreurCount = 0;
@@ -43,15 +44,14 @@ function creerNouvelleBoisson(): boissons {
     quantite: 0,
   };
 }
-/*
+
 function reinitialiserErreur() {
+  /*
   erreur_nom;
   erreur_description;
   erreur_prix;
+  */
 }
-
-function preremplirChamps(nom, description, prix) {}
-*/
 </script>
 
 <template>
