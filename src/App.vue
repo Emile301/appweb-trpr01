@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import LesBoissonsDuRenard from "./components/lesBoissonsDuRenard.vue";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap'
+</script>
 
 <template>
-  <p>tests tests</p>
+  <LesBoissonsDuRenard />
 </template>
-
-<style></style>
