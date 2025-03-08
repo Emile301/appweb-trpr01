@@ -121,7 +121,7 @@ export function dupliquer(boisson: boissons) {
   </div>
 </template>
 
-<!--Annimation pour fermeture et ouverture des accordion fait l'aide de Chat-GPT-->
+<!--Annimation pour fermeture et ouverture des accordion fait avec l'aide de Chat-GPT-->
 <style scoped>
 .accordion-collapse {
   transition: height 0.2s ease-out, opacity 0.2s ease-out;

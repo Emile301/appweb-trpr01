@@ -30,7 +30,7 @@ function supprimer() {
 </script>
 
 <template>
-  <button class="btn btn-primary btn-lg" @click="confirmation()">
+  <button class="btn btn-primary btn-lg btn-spacing" @click="confirmation()">
     Supprimer le produit
   </button>
 
@@ -43,14 +43,17 @@ function supprimer() {
       <p>
         <strong>Attention !</strong> Voulez-vous vraiment supprimer cet item?
       </p>
-      <button class="btn btn-primary btn-lg" @click="supprimer()">
+      <button class="btn btn-primary btn-lg btn-spacing" @click="supprimer()">
         Supprimer
       </button>
-      <button class="btn btn-primary btn-lg" @click="annuler()">annuler</button>
+      <button class="btn btn-primary btn-lg btn-spacing" @click="annuler()">
+        annuler
+      </button>
     </div>
   </div>
 </template>
 
+<!--Alerte fait avec l'aide de Chat-GPT-->
 <style scoped>
 .fullscreen-alert {
   position: fixed;
@@ -64,5 +67,8 @@ function supprimer() {
   align-items: center;
   text-align: center;
   z-index: 1050;
+}
+.btn-spacing {
+  margin-left: 10px;
 }
 </style>

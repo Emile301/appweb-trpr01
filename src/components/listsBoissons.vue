@@ -35,20 +35,28 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
         data-bs-parent="#afficher"
       >
         <div class="accordion-body">
-          <button class="btn btn-primary btn-lg">
+          <button class="btn btn-primary btn-lg btn-spacing">
             Modifier le produit
             <modifier />
           </button>
-          <!--<button class="btn btn-primary btn-lg" @click="dupliquer(boisson)">Dupliquer le produit</button>-->
+          <button class="btn btn-primary btn-lg btn-spacing">
+            Dupliquer le produit
+          </button>
           <supprimer
             :boisson="boisson"
             :boissonsListe="props.boissonsListe"
             @update:boissonListe="updateListeBoissons"
           />
 
-          <p>nom: {{ boisson.nom }}</p>
-          <p>description: {{ boisson.description }}</p>
-          <p>prix: {{ boisson.prix }}$</p>
+          <p>
+            nom: <strong> {{ boisson.nom }} </strong>
+          </p>
+          <p>
+            description: <strong> {{ boisson.description }} </strong>
+          </p>
+          <p>
+            prix: <strong> {{ boisson.prix }} $ </strong>
+          </p>
         </div>
       </div>
     </div>
@@ -56,9 +64,12 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
   <rupture />
 </template>
 
-<!--Annimation pour fermeture et ouverture des accordion fait l'aide de Chat-GPT-->
+<!--Annimation pour fermeture et ouverture des accordion fait avec l'aide de Chat-GPT-->
 <style scoped>
 .accordion-collapse {
   transition: height 0.2s ease-out;
+}
+.btn-spacing {
+  margin-left: 10px;
 }
 </style>
