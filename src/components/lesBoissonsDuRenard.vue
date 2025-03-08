@@ -1,12 +1,25 @@
 <script setup lang="ts">
-import ajouter from "./ajouterProduit.vue";
-import chercher from "./chercherProduit.vue";
-import exporter from "./exporterCSVProduit.vue";
-import liste from "./listsBoissons.vue"
+import ajouter from './ajouterProduit.vue'
+import chercher from './chercherProduit.vue'
+import exporter from './exporterCSVProduit.vue'
+import liste from './listsBoissons.vue'
+
+import { ref } from 'vue'
+
+import { boissonsListe } from '../scripts/listsBoissons'
+import { type boissons } from '../scripts/types'
+
+const listeBoissons = ref([...boissonsListe])
+
+function updateListeBoissons(nouvelleListe: boissons[]) {
+  listeBoissons.value = nouvelleListe
+}
 </script>
 
 <template>
-  <div class="vh-100 d-flex flex-column justify-content-center align-items-center bg-dark text-light">
+  <div
+    class="vh-100 d-flex flex-column justify-content-center align-items-center bg-dark text-light"
+  >
     <header class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-auto">
@@ -21,19 +34,25 @@ import liste from "./listsBoissons.vue"
     <main class="container mt-4">
       <div class="row g-2 align-items-stretch">
         <div class="col-10">
-          <ajouter />
+          <ajouter
+            :boissonsListe="listeBoissons"
+            @update:boissonListe="updateListeBoissons"
+          />
         </div>
         <div class="col-2">
-          <exporter />
+          <exporter :boissonsListe="listeBoissons" />
         </div>
       </div>
 
       <div class="mt-4 col-10">
-        <chercher />
+        <chercher :boissonsListe="listeBoissons" />
       </div>
 
       <div class="mt-2 col-12">
-        <liste />
+        <liste
+          :boissonsListe="listeBoissons"
+          @update:boissonListe="updateListeBoissons"
+        />
       </div>
     </main>
 

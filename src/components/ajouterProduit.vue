@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { boissonsListe } from "../scripts/listsBoissons";
-import { type boissons } from "../scripts/types";
+import { ref } from 'vue'
+import { boissonsListe } from '../scripts/listsBoissons'
+import { type boissons } from '../scripts/types'
 
-let nom = ref("");
-let description = ref("");
-let prix = ref("");
+let nom = ref('')
+let description = ref('')
+let prix = ref('')
 
 function ajouterProduit(event: Event) {
-  event.preventDefault();
-  if (validate()) boissonsListe.push(creerNouvelleBoisson());
+  event.preventDefault()
+  if (validate()) boissonsListe.push(creerNouvelleBoisson())
 }
 
 function validate(): boolean {
-  reinitialiserErreur();
-  console.log("erreur");
+  reinitialiserErreur()
+  console.log('erreur')
   /*
   let erreurCount = 0;
   reinitialiserErreur();
@@ -31,18 +31,18 @@ function validate(): boolean {
     erreur_prix;
   }
     */
-  return true;
+  return true
 }
 
 function creerNouvelleBoisson(): boissons {
-  console.log("boisson créer");
+  console.log('boisson créer')
   return {
     id: Date.now(), //Génération id aléatoire automatique fait avec l'aide de Chapt-GPT
     nom: nom.value,
     description: description.value,
     prix: Number(prix.value),
-    quantite: 0,
-  };
+    quantite: 0
+  }
 }
 
 function reinitialiserErreur() {

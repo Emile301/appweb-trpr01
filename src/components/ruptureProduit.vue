@@ -5,8 +5,6 @@
 //for(let boissons in boissonsListe){
 
 //}
-
 </script>
 
-<template>
-</template>
+<template></template>

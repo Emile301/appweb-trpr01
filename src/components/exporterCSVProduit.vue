@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { boissonsListe } from '../scripts/listsBoissons'
+import { type boissons } from '../scripts/types'
 
-function exporterCSV () {
-  const boissons = boissonsListe
+const props = defineProps<{ boissonsListe: boissons[] }>()
+
+function exporterCSV() {
+  const boissons = props.boissonsListe
     .map(
       boisson =>
         `${boisson.id},"${boisson.nom}","${boisson.description}",${boisson.prix},${boisson.quantite}`

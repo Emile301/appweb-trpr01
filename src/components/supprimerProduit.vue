@@ -1,19 +1,31 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { type boissons } from '../scripts/types'
+import { defineEmits, ref } from 'vue'
 
-const affichage = ref("none");
+const props = defineProps<{ boisson: boissons; boissonsListe: boissons[] }>()
+const emit = defineEmits(['update:boissonListe'])
+
+const affichage = ref('none')
 
 function confirmation() {
-  affichage.value = "flex";
+  affichage.value = 'flex'
 }
 
 function annuler() {
-  affichage.value = "none";
+  affichage.value = 'none'
 }
 
 function supprimer() {
-    
-    affichage.value = "none";
+  affichage.value = 'none'
+  const indexASupprimer = props.boissonsListe.findIndex(
+    b => b.id === props.boisson.id
+  )
+
+  if (indexASupprimer !== -1) {
+    const nouvelleListe = [...props.boissonsListe]
+    nouvelleListe.splice(indexASupprimer, 1)
+    emit('update:boissonListe', nouvelleListe)
+  }
 }
 </script>
 
@@ -27,9 +39,13 @@ function supprimer() {
     class="fullscreen-alert"
     :style="{ display: affichage }"
   >
-    <div class="alert alert-warning ">
-      <p><strong>Attention !</strong> Voulez-vous vraiment supprimer cet item?</p>
-      <button class="btn btn-primary btn-lg" @click="supprimer()">Supprimer</button>
+    <div class="alert alert-warning">
+      <p>
+        <strong>Attention !</strong> Voulez-vous vraiment supprimer cet item?
+      </p>
+      <button class="btn btn-primary btn-lg" @click="supprimer()">
+        Supprimer
+      </button>
       <button class="btn btn-primary btn-lg" @click="annuler()">annuler</button>
     </div>
   </div>

@@ -1,15 +1,22 @@
 <script setup lang="ts">
-//import { watch } from "vue";
-import { boissonsListe } from "../scripts/listsBoissons";
+import { type boissons } from '../scripts/types'
 //import { dupliquer } from './ajouterProduit.vue'
-import modifier from "./modifierProduit.vue";
-import supprimer from "./supprimerProduit.vue";
-import rupture from "./ruptureProduit.vue";
+import modifier from './modifierProduit.vue'
+import supprimer from './supprimerProduit.vue'
+import rupture from './ruptureProduit.vue'
+
+const props = defineProps<{ boissonsListe: boissons[] }>()
+
+const emit = defineEmits(['update:boissonListe'])
+
+function updateListeBoissons(nouvelleListe: boissons[]) {
+  emit('update:boissonListe', nouvelleListe)
+}
 </script>
 
 <template>
   <div class="accordion" id="afficher">
-    <div class="accordion-item" v-for="boisson of boissonsListe">
+    <div class="accordion-item" v-for="boisson of props.boissonsListe">
       <h2 class="accordion-header">
         <button
           class="accordion-button collapsed"
@@ -33,7 +40,12 @@ import rupture from "./ruptureProduit.vue";
             <modifier />
           </button>
           <!--<button class="btn btn-primary btn-lg" @click="dupliquer(boisson)">Dupliquer le produit</button>-->
-          <supprimer />
+          <supprimer
+            :boisson="boisson"
+            :boissonsListe="props.boissonsListe"
+            @update:boissonListe="updateListeBoissons"
+          />
+
           <p>nom: {{ boisson.nom }}</p>
           <p>description: {{ boisson.description }}</p>
           <p>prix: {{ boisson.prix }}$</p>
