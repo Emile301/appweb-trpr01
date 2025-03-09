@@ -30,7 +30,7 @@ function supprimer() {
 </script>
 
 <template>
-  <button class="btn btn-primary btn-lg btn-spacing" @click="confirmation()">
+  <button class="btn btn-danger btn-lg btn-spacing" @click="confirmation()">
     Supprimer le produit
   </button>
 
@@ -39,11 +39,11 @@ function supprimer() {
     class="fullscreen-alert"
     :style="{ display: affichage }"
   >
-    <div class="alert alert-warning">
+    <div class="alert alert-danger">
       <p>
         <strong>Attention !</strong> Voulez-vous vraiment supprimer cet item?
       </p>
-      <button class="btn btn-primary btn-lg btn-spacing" @click="supprimer()">
+      <button class="btn btn-danger btn-lg btn-spacing" @click="supprimer()">
         Supprimer
       </button>
       <button class="btn btn-primary btn-lg btn-spacing" @click="annuler()">

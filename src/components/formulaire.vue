@@ -1,41 +1,53 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { boissonsListe } from '../scripts/listsBoissons'
 import { type boissons } from '../scripts/types'
+
+const emit = defineEmits(['update:nouvelleboisson'])
 
 const nom = ref('')
 const description = ref('')
 const prix = ref('')
 
-function ajouterProduit(event: Event) {
+const erreurNom = ref('')
+const erreurDescription = ref('')
+const erreurPrix = ref('')
+
+function emitBoisson(event: Event) {
   event.preventDefault()
-  boissonsListe.push(creerNouvelleBoisson())
-  validate()
+  if (validate()) {
+    emit('update:nouvelleboisson', creerNouvelleBoisson())
+    nom.value = ''
+    description.value = ''
+    prix.value = ''
+  }
 }
 
-function validate() {
+function validate(): boolean {
   reinitialiserErreur()
-  console.log('erreur')
-  /*
-  let erreurCount = 0;
-  reinitialiserErreur();
-  if (nom.trim() == "") {
-    erreurCount++;
-    erreur_nom;
+  let valide = true
+
+  if (nom.value.trim() === '') {
+    erreurNom.value = 'Le nom est requis.'
+    valide = false
   }
-  if (description.trim() == "") {
-    erreurCount++;
-    erruer_description;
+
+  if (description.value.trim() === '') {
+    erreurDescription.value = 'La description est requise.'
+    valide = false
   }
-  if (prix.trim() == "") {
-    erreurCount++;
-    erreur_prix;
+
+  if (prix.value.trim() === '') {
+    erreurPrix.value = 'Le prix est requis.'
+    valide = false
+  } else if (isNaN(Number(prix.value)) || Number(prix.value) <= 0) {
+    erreurPrix.value = "Le prix n'est pas valide."
+    valide = false
   }
-    */
+
+  return valide
 }
 
 function creerNouvelleBoisson(): boissons {
-  console.log('boisson créer')
   return {
     id: Date.now(), //Génération id aléatoire automatique fait avec l'aide de Chapt-GPT
     nom: nom.value,
@@ -46,27 +58,40 @@ function creerNouvelleBoisson(): boissons {
 }
 
 function reinitialiserErreur() {
-  /*
-  erreur_nom;
-  erreur_description;
-  erreur_prix;
-  */
+  erreurNom.value = ''
+  erreurDescription.value = ''
+  erreurPrix.value = ''
 }
 </script>
 
 <template>
   <div class="container">
-    <form @submit="ajouterProduit">
+    <form @submit="emitBoisson" novalidate>
       <div class="row">
         <div class="col" id="nom">
-          <label for="nom">Nom du produit: </label>
-          <input type="text" name="nom" id="nom" v-model="nom" />
-          <p id="erreur_nom">Le nom n'est pas valide!</p>
+          <label for="nom" class="form-label">Nom du produit: </label>
+          <input
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': erreurNom }"
+            name="nom"
+            id="nom"
+            v-model="nom"
+          />
+          <div class="invalid-feedback">{{ erreurNom }}</div>
         </div>
+
         <div class="col" id="prix">
-          <label for="prix">Prix du produit: </label>
-          <input type="text" name="prix" id="prix" v-model="prix" />
-          <p id="erreur_prix">Le prix est obligatoir!</p>
+          <label for="prix" class="form-label">Prix du produit: </label>
+          <input
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': erreurPrix }"
+            name="prix"
+            id="prix"
+            v-model="prix"
+          />
+          <div class="invalid-feedback">{{ erreurPrix }}</div>
         </div>
       </div>
       <div class="row">
@@ -74,18 +99,26 @@ function reinitialiserErreur() {
           <label for="description">Description du produit: </label>
           <input
             type="text"
+            class="form-control"
+            :class="{ 'is-invalid': erreurDescription }"
             name="description"
             id="description"
             v-model="description"
           />
-          <p id="erreur_description">La description est obligatoir!</p>
+          <div class="invalid-feedback">{{ erreurDescription }}</div>
         </div>
       </div>
       <div class="row">
         <div class="col" id="submit">
-          <button class="btn btn-primary btn-lg" type="submit">Ajouter</button>
+          <button class="btn btn-success btn-lg btn-spacing" type="submit">Ajouter</button>
         </div>
       </div>
     </form>
   </div>
 </template>
+
+<style scoped>
+.btn-spacing {
+  margin-top: 10px;
+}
+</style>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type boissons } from '../scripts/types'
-//import { dupliquer } from './ajouterProduit.vue'
 import modifier from './modifierProduit.vue'
 import supprimer from './supprimerProduit.vue'
 import rupture from './ruptureProduit.vue'
@@ -17,6 +16,7 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
 <template>
   <div class="accordion" id="afficher">
     <div class="accordion-item" v-for="boisson of props.boissonsListe">
+      <rupture :boisson="boisson"/>
       <h2 class="accordion-header">
         <button
           class="accordion-button collapsed"
@@ -61,7 +61,6 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
       </div>
     </div>
   </div>
-  <rupture />
 </template>
 
 <!--Annimation pour fermeture et ouverture des accordion fait avec l'aide de Chat-GPT-->

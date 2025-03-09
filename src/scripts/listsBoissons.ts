@@ -16,7 +16,7 @@ export const boissonsListe: boissons[] = [
     description:
       'Délicate et fruitée, cette boisson aux bleuets allie la douceur naturelle des petits fruits sauvages à une légère touche acidulée. Préparée avec des bleuets frais infusés dans de l’eau pure, elle révèle une belle teinte violette et un arôme subtil. Une touche de miel ou de sirop d’érable vient rehausser sa saveur, tandis que quelques glaçons la rendent encore plus rafraîchissante. Parfaite pour se désaltérer en été, cette boisson offre une explosion de baies à chaque gorgée, tout en étant riche en antioxydants et en bienfaits naturels.',
     prix: 9,
-    quantite: 6
+    quantite: 0
   },
   {
     id: 3,
