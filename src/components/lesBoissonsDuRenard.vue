@@ -10,9 +10,16 @@ import { boissonsListe } from '../scripts/listsBoissons'
 import { type boissons } from '../scripts/types'
 
 const listeBoissons = ref([...boissonsListe])
+const Boissonfiltre = ref([...listeBoissons.value])
 
 function updateListeBoissons(nouvelleListe: boissons[]) {
   listeBoissons.value = nouvelleListe
+}
+
+function updateRecherche(rechercheFaite: string) {
+  Boissonfiltre.value = listeBoissons.value.filter(boisson =>
+    boisson.nom.toLowerCase().includes(rechercheFaite.toLowerCase())
+  )
 }
 </script>
 
@@ -49,20 +56,20 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
         </div>
       </div>
 
-      <div class="mt-4 col-10">
-        <chercher :boissonsListe="listeBoissons" />
+      <div class="mt-2 col-10">
+        <chercher @update:recherche="updateRecherche" />
       </div>
 
       <div class="mt-2 col-12">
         <liste
-          :boissonsListe="listeBoissons"
+          :boissonsListe="Boissonfiltre"
           @update:boissonListe="updateListeBoissons"
         />
       </div>
     </main>
 
     <footer class="mt-auto">
-      <p>allo</p>
+      <p>Copyright: Les Boissons Du Renard.LTD</p>
     </footer>
   </div>
 </template>

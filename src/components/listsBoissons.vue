@@ -37,7 +37,7 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
       >
         <div class="accordion-body">
           <dupliquer
-            :boisson="boisson"
+          :boisson="boisson"
             :boissonsListe="props.boissonsListe"
             @update:boissonListe="updateListeBoissons"
           />
