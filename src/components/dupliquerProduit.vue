@@ -1,3 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+function dupliquer () {}
+</script>
 
-<template></template>
+<template>
+  <button class="btn btn-danger btn-lg btn-spacing" @click="dupliquer()">
+    dupliquer le produit
+  </button>
+</template>

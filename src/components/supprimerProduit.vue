@@ -18,7 +18,7 @@ function annuler() {
 function supprimer() {
   affichage.value = 'none'
   const indexASupprimer = props.boissonsListe.findIndex(
-    b => b.id === props.boisson.id
+    boisson => boisson.id === props.boisson.id
   )
 
   if (indexASupprimer !== -1) {

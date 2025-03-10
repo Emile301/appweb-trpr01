@@ -12,7 +12,6 @@ import { type boissons } from '../scripts/types'
 const listeBoissons = ref([...boissonsListe])
 
 function updateListeBoissons(nouvelleListe: boissons[]) {
-  console.log("liste mises à jour")
   listeBoissons.value = nouvelleListe
 }
 </script>
@@ -24,7 +23,12 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
     <header class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-auto">
-          <img src="../assets/logo.png" alt="Logo" id="logo" onclick="location.reload()"/>
+          <img
+            src="../assets/logo.png"
+            alt="Logo"
+            id="logo"
+            onclick="location.reload()"
+          />
         </div>
         <div class="col">
           <h1>Les boissons du renard</h1>

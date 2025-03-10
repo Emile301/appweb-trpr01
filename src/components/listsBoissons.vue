@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type boissons } from '../scripts/types'
+import dupliquer from './dupliquerProduit.vue'
 import modifier from './modifierProduit.vue'
 import supprimer from './supprimerProduit.vue'
 import rupture from './ruptureProduit.vue'
@@ -16,7 +17,7 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
 <template>
   <div class="accordion" id="afficher">
     <div class="accordion-item" v-for="boisson of props.boissonsListe">
-      <rupture :boisson="boisson"/>
+      <rupture :boisson="boisson" />
       <h2 class="accordion-header">
         <button
           class="accordion-button collapsed"
@@ -35,28 +36,28 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
         data-bs-parent="#afficher"
       >
         <div class="accordion-body">
-          <button class="btn btn-primary btn-lg btn-spacing">
-            Modifier le produit
-            <modifier />
-          </button>
-          <button class="btn btn-primary btn-lg btn-spacing">
-            Dupliquer le produit
-          </button>
+          <dupliquer />
+          <modifier
+            :boisson="boisson"
+            :boissonsListe="props.boissonsListe"
+            @update:boissonListe="updateListeBoissons"
+          />
           <supprimer
             :boisson="boisson"
             :boissonsListe="props.boissonsListe"
             @update:boissonListe="updateListeBoissons"
           />
-
-          <p>
-            nom: <strong> {{ boisson.nom }} </strong>
-          </p>
-          <p>
-            description: <strong> {{ boisson.description }} </strong>
-          </p>
-          <p>
-            prix: <strong> {{ boisson.prix }} $ </strong>
-          </p>
+          <div>
+            <p>
+              nom: <strong> {{ boisson.nom }} </strong>
+            </p>
+            <p>
+              description: <strong> {{ boisson.description }} </strong>
+            </p>
+            <p>
+              prix: <strong> {{ boisson.prix }} $ </strong>
+            </p>
+          </div>
         </div>
       </div>
     </div>

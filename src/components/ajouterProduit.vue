@@ -6,9 +6,7 @@ const props = defineProps<{ boissonsListe: boissons[] }>()
 const emit = defineEmits(['update:boissonListe'])
 
 function ajouterProduit(produit: boissons) {
-  const nouvelleListe = [...props.boissonsListe, produit]
-  console.log('liste mises a jour - 1')
-  emit('update:boissonListe', nouvelleListe)
+  emit('update:boissonListe', [...props.boissonsListe, produit])
 }
 </script>
 

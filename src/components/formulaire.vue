@@ -12,8 +12,7 @@ const erreurNom = ref('')
 const erreurDescription = ref('')
 const erreurPrix = ref('')
 
-function emitBoisson(event: Event) {
-  event.preventDefault()
+function emitBoisson() {
   if (validate()) {
     emit('update:nouvelleboisson', creerNouvelleBoisson())
     nom.value = ''
@@ -36,10 +35,7 @@ function validate(): boolean {
     valide = false
   }
 
-  if (prix.value.trim() === '') {
-    erreurPrix.value = 'Le prix est requis.'
-    valide = false
-  } else if (isNaN(Number(prix.value)) || Number(prix.value) <= 0) {
+  if (isNaN(Number(prix.value)) || Number(prix.value) <= 0) {
     erreurPrix.value = "Le prix n'est pas valide."
     valide = false
   }
@@ -66,7 +62,7 @@ function reinitialiserErreur() {
 
 <template>
   <div class="container">
-    <form @submit="emitBoisson" novalidate>
+    <form>
       <div class="row">
         <div class="col" id="nom">
           <label for="nom" class="form-label">Nom du produit: </label>
@@ -84,7 +80,7 @@ function reinitialiserErreur() {
         <div class="col" id="prix">
           <label for="prix" class="form-label">Prix du produit: </label>
           <input
-            type="text"
+            type="number"
             class="form-control"
             :class="{ 'is-invalid': erreurPrix }"
             name="prix"
@@ -95,7 +91,7 @@ function reinitialiserErreur() {
         </div>
       </div>
       <div class="row">
-        <div class="col" id="description">
+        <div class="col">
           <label for="description">Description du produit: </label>
           <input
             type="text"
@@ -109,8 +105,14 @@ function reinitialiserErreur() {
         </div>
       </div>
       <div class="row">
-        <div class="col" id="submit">
-          <button class="btn btn-success btn-lg btn-spacing" type="submit">Ajouter</button>
+        <div class="col">
+          <button
+            class="btn btn-success btn-lg btn-spacing"
+            type="button"
+            @click="emitBoisson()"
+          >
+            Ajouter
+          </button>
         </div>
       </div>
     </form>
