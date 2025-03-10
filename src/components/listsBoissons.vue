@@ -36,7 +36,11 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
         data-bs-parent="#afficher"
       >
         <div class="accordion-body">
-          <dupliquer />
+          <dupliquer
+            :boisson="boisson"
+            :boissonsListe="props.boissonsListe"
+            @update:boissonListe="updateListeBoissons"
+          />
           <modifier
             :boisson="boisson"
             :boissonsListe="props.boissonsListe"

@@ -40,15 +40,27 @@ function supprimer() {
     :style="{ display: affichage }"
   >
     <div class="alert alert-danger">
+      <div>
+        <h2>Supprimer le produit</h2>
+      </div>
       <p>
         <strong>Attention !</strong> Voulez-vous vraiment supprimer cet item?
       </p>
-      <button class="btn btn-danger btn-lg btn-spacing" @click="supprimer()">
-        Supprimer
-      </button>
-      <button class="btn btn-primary btn-lg btn-spacing" @click="annuler()">
-        annuler
-      </button>
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-danger btn-lg btn-spacing"
+            @click="supprimer()"
+          >
+            Supprimer
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary btn-lg btn-spacing" @click="annuler()">
+            annuler
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -70,5 +82,6 @@ function supprimer() {
 }
 .btn-spacing {
   margin-left: 10px;
+  margin-top: 10px;
 }
 </style>

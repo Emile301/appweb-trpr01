@@ -87,7 +87,7 @@ function reinitialiserErreur() {
 
 <template>
   <button class="btn btn-primary btn-lg btn-spacing" @click="afficherForm()">
-    modifier le produit
+    Modifier le produit
   </button>
 
   <div
@@ -98,6 +98,9 @@ function reinitialiserErreur() {
     <div class="alert alert-warning">
       <div class="container">
         <form @submit="emitChangement">
+            <div>
+                <h2>Modifier le produit</h2>
+            </div>
           <div class="row">
             <div class="col" id="nom">
               <label for="nom" class="form-label">Nom du produit: </label>
