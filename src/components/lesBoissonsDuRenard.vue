@@ -14,6 +14,7 @@ const Boissonfiltre = ref([...listeBoissons.value])
 
 function updateListeBoissons(nouvelleListe: boissons[]) {
   listeBoissons.value = nouvelleListe
+  Boissonfiltre.value = nouvelleListe
 }
 
 function updateRecherche(rechercheFaite: string) {

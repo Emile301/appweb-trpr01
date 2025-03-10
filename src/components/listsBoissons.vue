@@ -12,6 +12,12 @@ const emit = defineEmits(['update:boissonListe'])
 function updateListeBoissons(nouvelleListe: boissons[]) {
   emit('update:boissonListe', nouvelleListe)
 }
+
+function quantiteCouleur(quantite: number) {
+  if (quantite === 0) return 'text-danger'
+  if (quantite >= 1 && quantite <= 5) return 'text-warning'
+  return 'text-success'
+}
 </script>
 
 <template>
@@ -27,7 +33,12 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
           aria-expanded="false"
           :aria-controls="'#' + boisson.id"
         >
-          {{ boisson.nom }} - {{ boisson.quantite }} en stock
+          {{ boisson.nom }} - &nbsp;
+          <span :class="quantiteCouleur(Number(boisson.quantite))">
+            {{ boisson.quantite }}
+          </span>
+          &nbsp;en stock
+          <!--Espace rajouté avec Chat-GPT-->
         </button>
       </h2>
       <div
@@ -37,7 +48,7 @@ function updateListeBoissons(nouvelleListe: boissons[]) {
       >
         <div class="accordion-body">
           <dupliquer
-          :boisson="boisson"
+            :boisson="boisson"
             :boissonsListe="props.boissonsListe"
             @update:boissonListe="updateListeBoissons"
           />
